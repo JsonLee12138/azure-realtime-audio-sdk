@@ -1,0 +1,108 @@
+{
+  "homepage.title": {
+    "message": "Azure Realtime Audio SDK"
+  },
+  "homepage.tagline": {
+    "message": "基于 Azure OpenAI Realtime API 的 TypeScript/JavaScript SDK，支持实时语音对话"
+  },
+  "homepage.description": {
+    "message": "基于 Azure OpenAI 构建实时音频应用的强大 SDK",
+    "description": "首页描述"
+  },
+  "homepage.features.feature1.title": {
+    "message": "实时语音交互",
+    "description": "特性1标题"
+  },
+  "homepage.features.feature1.description": {
+    "message": "支持流式音频输入输出，提供低延迟对话体验。支持多种音频格式包括 PCM16、G.711 μ-law、G.711 A-law。",
+    "description": "特性1描述：实时语音交互"
+  },
+  "homepage.features.feature2.title": {
+    "message": "WebSocket 通信",
+    "description": "特性2标题"
+  },
+  "homepage.features.feature2.description": {
+    "message": "基于 WebSocket 的实时双向通信，支持浏览器和 Node.js 环境。智能对话状态管理，自动连接维护。",
+    "description": "特性2描述：WebSocket 通信"
+  },
+  "homepage.features.feature3.title": {
+    "message": "工具调用支持",
+    "description": "特性3标题"
+  },
+  "homepage.features.feature3.description": {
+    "message": "支持 Function Calling 扩展 AI 能力。内置 Whisper 模型支持语音转录，完整的类型定义和文档。",
+    "description": "特性3描述：工具调用支持"
+  },
+  "homepage.features.feature4.title": {
+    "message": "TypeScript 原生支持",
+    "description": "特性4标题"
+  },
+  "homepage.features.feature4.description": {
+    "message": "完整的 TypeScript 类型定义和 JSDoc 文档。智能提示和类型安全，减少运行时错误。",
+    "description": "特性4描述：TypeScript 原生支持"
+  },
+  "homepage.features.feature5.title": {
+    "message": "跨平台支持",
+    "description": "特性5标题"
+  },
+  "homepage.features.feature5.description": {
+    "message": "支持浏览器和 Node.js 环境。提供完整的示例代码和最佳实践指南。",
+    "description": "特性5描述：跨平台支持"
+  },
+  "home.get-started": {
+    "message": "快速开始 - 5分钟 ⏱️"
+  },
+  "home.getting-started.title": {
+    "message": "开始使用"
+  },
+  "home.installation.guide": {
+    "message": "安装指南"
+  },
+  "home.api.docs": {
+    "message": "API 文档"
+  },
+  "home.code.session.established": {
+    "message": "会话已建立：",
+    "description": "会话建立代码注释"
+  },
+  "home.code.audio.data.received": {
+    "message": "收到音频数据：",
+    "description": "音频数据接收代码注释"
+  },
+  "navbar.title": {
+    "message": "Azure Realtime Audio SDK",
+    "description": "导航栏标题"
+  },
+  "item.label.Docs": {
+    "message": "文档",
+    "description": "导航栏项目标签：文档"
+  },
+  "item.label.Blog": {
+    "message": "博客",
+    "description": "导航栏项目标签：博客"
+  },
+  "footer.link.title.docs": {
+    "message": "文档",
+    "description": "页脚链接列标题：文档"
+  },
+  "footer.link.title.community": {
+    "message": "社区",
+    "description": "页脚链接列标题：社区"
+  },
+  "footer.link.title.more": {
+    "message": "更多",
+    "description": "页脚链接列标题：更多"
+  },
+  "footer.link.item.label.quick-start": {
+    "message": "快速开始",
+    "description": "页脚链接标签：快速开始"
+  },
+  "footer.link.item.label.api-reference": {
+    "message": "API 参考",
+    "description": "页脚链接标签：API 参考"
+  },
+  "footer.link.item.label.blog": {
+    "message": "博客",
+    "description": "页脚链接标签：博客"
+  }
+} 

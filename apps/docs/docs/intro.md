@@ -1,47 +1,81 @@
 ---
 sidebar_position: 1
 ---
+# 🎙️ Azure Realtime Audio SDK
 
-# Tutorial Intro
+> TypeScript/JavaScript SDK based on Azure OpenAI Realtime API, supporting real-time voice conversations
 
-Let's discover **Docusaurus in less than 5 minutes**.
+[中文](https://github.com/JsonLee12138/azure-realtime-audio-sdk/blob/main/README.md) | English
 
-## Getting Started
+## ✨ Features
 
-Get started by **creating a new site**.
+- 🎤 **Real-time Voice Interaction** - Support streaming audio input/output, low-latency conversation experience
+- 🔊 **Multiple Audio Formats** - Support PCM16, G.711 μ-law, G.711 A-law audio formats
+- 🌐 **WebSocket Communication** - Real-time bidirectional communication based on WebSocket
+- 🛠️ **Tool Calling Support** - Support Function Calling, extensible AI capabilities
+- 📝 **Speech-to-Text** - Built-in Whisper model support for speech transcription
+- 🎯 **TypeScript Native Support** - Complete type definitions and JSDoc documentation
+- 🔄 **State Management** - Intelligent conversation state management (idle, listening, thinking, speaking)
+- 🌍 **Cross-platform** - Support browser and Node.js environments
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
+## 📦 Installation
 
 ```bash
-npm init docusaurus@latest my-website classic
+npm install @azure-realtime-audio/core
+# or
+pnpm add @azure-realtime-audio/core
+# or
+yarn add @azure-realtime-audio/core
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## 🚀 Quick Start
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+### Basic Usage
 
-## Start your site
+```typescript
+import { AzureRealTimeAudio } from '@azure-realtime-audio/core';
 
-Run the development server:
+// Create client instance
+const client = new AzureRealTimeAudio({
+  hostName: 'your-resource.openai.azure.com',
+  apiVersion: '2024-10-01-preview',
+  deployment: 'gpt-4o-realtime-preview',
+  apiKey: 'your-api-key'
+});
 
-```bash
-cd my-website
-npm run start
+// Listen for initialization completion
+client.once('init', (session) => {
+  console.log('Session established:', session);
+});
+
+// Listen for model response audio data
+client.on('response.audio.delta', (audioData) => {
+  // Process audio data stream
+  console.log('Received audio data:', audioData.delta);
+});
+
+// Listen for conversation completion
+client.on('response.done', (response) => {
+  console.log('Conversation completed:', response);
+});
 ```
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+## 📖 Next Steps
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+- [Getting Started](/docs/getting-started) - Learn basic usage
+- [API Reference](/docs/api-reference) - View complete API documentation
+- [Examples](/docs/examples) - See practical application cases
+- [Guides](/docs/guides) - Understand various usage scenarios
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+## 🤝 Community and Support
+
+If you encounter issues during use, you can get help through the following channels:
+
+- [GitHub Repository](https://github.com/JsonLee12138/azure-realtime-audio-sdk)
+- [Discord Community](https://discord.gg/666U6JTCQY)
+- [QQ Channel](https://pd.qq.com/s/fjwy3eo20?b=9)
+- [GitHub Issues](https://github.com/JsonLee12138/azure-realtime-audio-sdk/issues)
+
+## 📄 License
+
+MIT License - see the [LICENSE](https://github.com/JsonLee12138/azure-realtime-audio-sdk/blob/main/LICENSE) file for details 

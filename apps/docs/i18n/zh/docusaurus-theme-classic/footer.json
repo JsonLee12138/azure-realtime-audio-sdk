@@ -1,0 +1,42 @@
+{
+  "link.title.docs": {
+    "message": "文档",
+    "description": "页脚链接列标题：文档"
+  },
+  "link.title.community": {
+    "message": "社区",
+    "description": "页脚链接列标题：社区"
+  },
+  "link.title.more": {
+    "message": "更多",
+    "description": "页脚链接列标题：更多"
+  },
+  "link.item.label.installation-guide": {
+    "message": "安装指南",
+    "description": "页脚链接标签：安装指南，链接到 /docs/intro"
+  },
+  "link.item.label.api-reference": {
+    "message": "API 参考",
+    "description": "页脚链接标签：API 参考，链接到 /docs/api-reference"
+  },
+  "link.item.label.blog": {
+    "message": "博客",
+    "description": "页脚链接标签：博客，链接到 /blog"
+  },
+  "link.item.label.Discord": {
+    "message": "Discord",
+    "description": "页脚链接标签：Discord，链接到 https://discord.gg/666U6JTCQY"
+  },
+  "link.item.label.qq-channel": {
+    "message": "QQ频道",
+    "description": "页脚链接标签：QQ频道，链接到 https://pd.qq.com/s/fjwy3eo20?b=9"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "页脚链接标签：GitHub，链接到 https://github.com/JsonLee12138/azure-realtime-audio-sdk"
+  },
+  "copyright": {
+    "message": "版权所有 © 2025 Azure Realtime Audio SDK。",
+    "description": "页脚版权信息"
+  }
+} 

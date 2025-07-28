@@ -3,16 +3,22 @@
  * and scoped locally.
  */
 
+/* 首页 hero 区域美化 */
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(120deg, #2e8555 0%, #3cad6e 100%);
+  color: white;
+  border-radius: 0 0 32px 32px;
+  box-shadow: 0 8px 32px 0 rgba(46, 133, 85, 0.12);
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 2rem;
+    padding: 2rem 0.5rem;
+    border-radius: 0 0 16px 16px;
   }
 }
 
@@ -20,4 +26,119 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* 首页代码块美化 */
+.codeBlock {
+  background: linear-gradient(90deg, #f4f8fb 60%, #e6f7ff 100%);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px 0 rgba(0, 120, 212, 0.06);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  font-size: 1rem;
+}
+
+:global([data-theme='dark']) .codeBlock {
+  background: linear-gradient(90deg, #232b36 60%, #1a2733 100%);
+}
+
+/* 深色模式下的 heroBanner - 保持与浅色模式一致 */
+:global([data-theme='dark']) .heroBanner {
+  background: linear-gradient(120deg, #2e8555 0%, #3cad6e 100%);
+  box-shadow: 0 8px 32px 0 rgba(46, 133, 85, 0.12);
+}
+
+.codeBlock pre {
+  margin: 0;
+}
+
+.codeBlock code {
+  display: block;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #1a2a3a;
+  background: none;
+}
+
+.gettingStarted {
+  padding: 4rem 0 2rem 0;
+  background: linear-gradient(90deg, #fafdff 60%, #e6f7ff 100%);
+  border-radius: 24px;
+  margin-top: 2rem;
+}
+
+:global([data-theme='dark']) .gettingStarted {
+  background: linear-gradient(90deg, #1a2733 60%, #163040 100%);
+}
+
+.gettingStartedTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--ifm-color-primary);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.gettingStartedLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* 文档正文美化 */
+:global(.markdown) {
+  font-size: 1.08rem;
+  line-height: 1.85;
+  /* color: #1a2a3a; */
+}
+:global(.markdown) h1,
+:global(.markdown) h2,
+:global(.markdown) h3 {
+  font-weight: 700;
+  margin-top: 2.2em;
+  margin-bottom: 1em;
+}
+:global(.markdown) h1 {
+  font-size: 2.2rem;
+}
+:global(.markdown) h2 {
+  font-size: 1.5rem;
+}
+:global(.markdown) h3 {
+  font-size: 1.2rem;
+}
+:global(.markdown) table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.04);
+}
+:global(.markdown) th,
+:global(.markdown) td {
+  padding: 0.6em 1em;
+}
+
+:global(.markdown) ul,
+:global(.markdown) ol {
+  margin-bottom: 1.2em;
+}
+:global(.markdown) blockquote {
+  border-left: 4px solid #2e8555;
+  background: #f4f8fb;
+  color: #3a4a5a;
+  padding: 0.8em 1.2em;
+  border-radius: 0 8px 8px 0;
+  margin: 1.5em 0;
+}
+
+/* 深色模式下的 blockquote */
+:global([data-theme='dark']) .markdown blockquote {
+  border-left: 4px solid #25c2a0;
+  background: #1a2733;
+  color: #e6e8ea;
 }

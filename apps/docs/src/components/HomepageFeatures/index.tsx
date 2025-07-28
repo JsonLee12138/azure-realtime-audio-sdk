@@ -1,68 +1,112 @@
-import type {ReactNode} from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Translate from '@docusaurus/Translate';
 import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-  description: ReactNode;
+  description: React.ReactElement;
+  icon: string;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    title: (
+      <Translate id="homepage.features.feature1.title">
+        Real-time Voice Interaction
+      </Translate>
+    ),
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        <Translate id="homepage.features.feature1.description">
+          Supports streaming audio input/output, providing low-latency conversation experience. Supports multiple audio formats including PCM16, G.711 μ-law, G.711 A-law.
+        </Translate>
       </>
     ),
+    icon: '🎤',
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    title: (
+      <Translate id="homepage.features.feature2.title">
+        WebSocket Communication
+      </Translate>
+    ),
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        <Translate id="homepage.features.feature2.description">
+          Real-time bidirectional communication based on WebSocket, supporting browser and Node.js environments. Intelligent conversation state management with automatic connection maintenance.
+        </Translate>
       </>
     ),
+    icon: '🌐',
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    title: (
+      <Translate id="homepage.features.feature3.title">
+        Tool Calling Support
+      </Translate>
+    ),
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        <Translate id="homepage.features.feature3.description">
+          Supports Function Calling to extend AI capabilities. Built-in Whisper model for speech transcription with complete type definitions and documentation.
+        </Translate>
       </>
     ),
+    icon: '🛠️',
+  },
+  {
+    title: (
+      <Translate id="homepage.features.feature4.title">
+        TypeScript Native Support
+      </Translate>
+    ),
+    description: (
+      <>
+        <Translate id="homepage.features.feature4.description">
+          Complete TypeScript type definitions and JSDoc documentation. Intelligent suggestions and type safety, reducing runtime errors.
+        </Translate>
+      </>
+    ),
+    icon: '🎯',
+  },
+  {
+    title: (
+      <Translate id="homepage.features.feature5.title">
+        Cross-platform Support
+      </Translate>
+    ),
+    description: (
+      <>
+        <Translate id="homepage.features.feature5.description">
+          Supports browser and Node.js environments. Provides complete example code and best practice guides.
+        </Translate>
+      </>
+    ),
+    icon: '🌍',
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, description, icon}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
       <div className="text--center padding-horiz--md">
+        <div className={styles.featureIcon}>{icon}</div>
         <Heading as="h3">{title}</Heading>
-        <p>{description as string}</p>
+        <p>{description}</p>
       </div>
     </div>
   );
 }
 
-export default function HomepageFeatures(): JSX.Element {
+export default function HomepageFeatures(): React.ReactElement {
   return (
     <section className={styles.features}>
       <div className="container">
         <div className="row">
           {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+            <Feature key={idx} title={props.title} description={props.description} icon={props.icon} />
           ))}
         </div>
       </div>
