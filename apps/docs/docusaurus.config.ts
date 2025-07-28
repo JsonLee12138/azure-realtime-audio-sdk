@@ -18,16 +18,11 @@ const config: Config = {
   baseUrl: '/azure-realtime-audio-sdk/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/azure-realtime-audio-sdk/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'JsonLee12138', // Usually your GitHub org/user name.
   projectName: 'azure-realtime-audio-sdk', // Usually your repo name.
-
-  // GitHub pages deployment config
-  organizationName: 'JsonLee12138',
-  projectName: 'azure-realtime-audio-sdk',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
