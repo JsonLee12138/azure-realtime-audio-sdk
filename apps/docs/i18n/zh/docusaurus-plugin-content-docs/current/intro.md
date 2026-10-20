@@ -142,6 +142,7 @@ client.on("error", (err) => {
 ## 💬 社区与技术支持
 
 - **问题反馈与建议**: [GitHub Issues](https://github.com/JsonLee12138/azure-realtime-audio-sdk/issues)
+- **Twitter (X)**: [@json_lee12138](https://x.com/json_lee12138)
 - **Discord 交流群**: [加入 Discord](https://discord.gg/666U6JTCQY)
 - **QQ 频道/交流群**: [加入 QQ 群](https://pd.qq.com/s/fjwy3eo20?b=9)
 

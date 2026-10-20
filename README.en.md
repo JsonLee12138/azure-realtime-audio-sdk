@@ -18,11 +18,11 @@ English | [中文](https://github.com/JsonLee12138/azure-realtime-audio-sdk/blob
 ## 📦 Installation
 
 ```bash
-npm install @azure-realtime-audio/core
+npm install azure-realtime-audio-sdk
 # or
-pnpm add @azure-realtime-audio/core
+pnpm add azure-realtime-audio-sdk
 # or
-yarn add @azure-realtime-audio/core
+yarn add azure-realtime-audio-sdk
 ```
 
 ## 🚀 Quick Start
@@ -30,7 +30,7 @@ yarn add @azure-realtime-audio/core
 ### Basic Usage
 
 ```typescript
-import { AzureRealTimeAudio } from '@azure-realtime-audio/core';
+import { AzureRealTimeAudio } from 'azure-realtime-audio-sdk';
 
 // Create client instance
 const client = new AzureRealTimeAudio({
@@ -88,7 +88,7 @@ async function startRecording() {
 ### Advanced Configuration
 
 ```typescript
-import { AzureRealTimeAudio, ModelStatusEnum } from '@azure-realtime-audio/core';
+import { AzureRealTimeAudio, ModelStatusEnum } from 'azure-realtime-audio-sdk';
 
 const client = new AzureRealTimeAudio({
   hostName: 'your-resource.openai.azure.com',
@@ -346,7 +346,7 @@ translator.on('response.text.delta', (data) => {
 
 ```typescript
 import WebSocket from 'ws';
-import { AzureRealTimeAudio } from '@azure-realtime-audio/core';
+import { AzureRealTimeAudio } from 'azure-realtime-audio-sdk';
 
 const client = new AzureRealTimeAudio(
   {
@@ -437,5 +437,5 @@ If you encounter issues during usage, you can get help through:
 
 ## Contact Us
 
+- [Twitter (X)](https://x.com/json_lee12138)
 - [Discord](https://discord.gg/666U6JTCQY)
-- [QQ Channel](https://pd.qq.com/s/fjwy3eo20?b=9) [![QQ Channel](./qq.jpg)](https://pd.qq.com/s/fjwy3eo20?b=9)

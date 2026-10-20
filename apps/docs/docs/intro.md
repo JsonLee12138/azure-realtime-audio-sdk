@@ -155,8 +155,8 @@ Explore detailed guides and references across our documentation:
 ## 💬 Community and Support
 
 - **Issues & Feature Requests**: [GitHub Issues](https://github.com/JsonLee12138/azure-realtime-audio-sdk/issues)
+- **Twitter (X)**: [@json_lee12138](https://x.com/json_lee12138)
 - **Discord Community**: [Join Discord](https://discord.gg/666U6JTCQY)
-- **QQ Channel**: [Join QQ Group](https://pd.qq.com/s/fjwy3eo20?b=9)
 
 ---
 

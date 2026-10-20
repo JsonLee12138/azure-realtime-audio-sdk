@@ -115,6 +115,7 @@ pnpm changeset
 ## 💬 社区与交流
 
 - **GitHub Issues**: [提交 Issue](https://github.com/JsonLee12138/azure-realtime-audio-sdk/issues)
+- **Twitter (X)**: [@json_lee12138](https://x.com/json_lee12138)
 - **Discord 社区**: [加入 Discord](https://discord.gg/666U6JTCQY)
 - **QQ 交流群**: [加入 QQ 群](https://pd.qq.com/s/fjwy3eo20?b=9)
 

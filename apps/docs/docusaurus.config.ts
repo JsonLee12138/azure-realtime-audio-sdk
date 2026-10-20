@@ -135,6 +135,10 @@ const config: Config = {
           title: "Community",
           items: [
             {
+              label: "Twitter (X)",
+              href: "https://x.com/json_lee12138",
+            },
+            {
               label: "Discord",
               href: "https://discord.gg/666U6JTCQY",
             },

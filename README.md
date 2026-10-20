@@ -18,11 +18,11 @@
 ## 📦 安装
 
 ```bash
-npm install @azure-realtime-audio/core
+npm install azure-realtime-audio-sdk
 # 或
-pnpm add @azure-realtime-audio/core
+pnpm add azure-realtime-audio-sdk
 # 或
-yarn add @azure-realtime-audio/core
+yarn add azure-realtime-audio-sdk
 ```
 
 ## 🚀 快速开始
@@ -30,7 +30,7 @@ yarn add @azure-realtime-audio/core
 ### 基础使用
 
 ```typescript
-import { AzureRealTimeAudio } from '@azure-realtime-audio/core';
+import { AzureRealTimeAudio } from 'azure-realtime-audio-sdk';
 
 // 创建客户端实例
 const client = new AzureRealTimeAudio({
@@ -88,7 +88,7 @@ async function startRecording() {
 ### 高级配置
 
 ```typescript
-import { AzureRealTimeAudio, ModelStatusEnum } from '@azure-realtime-audio/core';
+import { AzureRealTimeAudio, ModelStatusEnum } from 'azure-realtime-audio-sdk';
 
 const client = new AzureRealTimeAudio({
   hostName: 'your-resource.openai.azure.com',
@@ -346,7 +346,7 @@ translator.on('response.text.delta', (data) => {
 
 ```typescript
 import WebSocket from 'ws';
-import { AzureRealTimeAudio } from '@azure-realtime-audio/core';
+import { AzureRealTimeAudio } from 'azure-realtime-audio-sdk';
 
 const client = new AzureRealTimeAudio(
   {
@@ -437,5 +437,6 @@ MIT License - 详见 [LICENSE](./LICENSE) 文件
 
 ## 联系我们
 
+- [Twitter (X)](https://x.com/json_lee12138)
 - [Discord](https://discord.gg/666U6JTCQY)
 - [QQ频道](https://pd.qq.com/s/fjwy3eo20?b=9) [![图片描述](./qq.jpg)](https://pd.qq.com/s/fjwy3eo20?b=9)
