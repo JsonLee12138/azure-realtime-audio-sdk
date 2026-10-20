@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 ---
+
 # API Reference
 
 This document provides a comprehensive reference for all classes, methods, enums, and data types used in the Azure Realtime Audio SDK.
@@ -21,18 +22,23 @@ new AzureRealTimeAudio(options, websocketOptions?, WebSocketImpl?)
 
 ### Methods
 
-#### Event Handling
+#### Event Handling & Connection
+
 - `on(event, listener)`: Registers a listener for a specific event.
 - `once(event, listener)`: Registers a one-time listener for an event.
 - `off(event, listener?)`: Removes a specific listener or all listeners for an event.
 - `offAll()`: Removes all event listeners.
+- `send(message)`: Sends an arbitrary typed request command conforming to Azure Realtime API protocol.
+- `close()`: Closes the WebSocket connection and releases underlying network resources.
 
 #### Audio Operations
+
 - `appendAudio(base64Audio: string)`: Sends a base64-encoded audio chunk.
 - `commitAudio()`: Commits the buffered audio, signaling the end of user speech.
 - `clearAudioBuffer()`: Clears the audio buffer on the server.
 
 #### Conversation Management
+
 - `createConversationItem(item: RealtimeRealtimeRequestItem, previousItemId?: string)`: Adds an item to the conversation history. See [Conversation Items](#conversation-items) for `item` structure.
 - `deleteItem(itemId: string)`: Deletes an item from the conversation history.
 - `truncateItem(itemId: string, contentIndex: number, audioEndMs: number)`: Truncates a conversation item.
@@ -40,6 +46,7 @@ new AzureRealTimeAudio(options, websocketOptions?, WebSocketImpl?)
 - `cancelResponse()`: Cancels an in-progress model response.
 
 #### State Management
+
 - `status`: (Getter) Returns the current `ModelStatusEnum`.
 - `status = newStatus`: (Setter) Sets the model status.
 - `setModelSpeakDone()`: A helper to set the status to `IDLE` after the model finishes speaking.
@@ -51,82 +58,90 @@ new AzureRealTimeAudio(options, websocketOptions?, WebSocketImpl?)
 ## Enums and Type Aliases
 
 ### ModelStatusEnum
+
 Represents the state of the AI model.
 
-| Value | Description |
-|---|---|
-| `IDLE` | Model is idle and waiting for input. |
-| `LISTENING` | Model is actively listening to user audio. |
-| `THINKING` | Model is processing the input and generating a response. |
-| `SPEAKING` | Model is outputting audio/text. |
+| Value       | Description                                              |
+| ----------- | -------------------------------------------------------- |
+| `IDLE`      | Model is idle and waiting for input.                     |
+| `LISTENING` | Model is actively listening to user audio.               |
+| `THINKING`  | Model is processing the input and generating a response. |
+| `SPEAKING`  | Model is outputting audio/text.                          |
 
 ### RealtimeRealtimeAudioFormat
+
 Specifies the audio format for input and output.
 
-| Value | Description |
-|---|---|
-| `pcm16` | 16-bit PCM audio. |
+| Value       | Description              |
+| ----------- | ------------------------ |
+| `pcm16`     | 16-bit PCM audio.        |
 | `g711_ulaw` | G.711 μ-law audio codec. |
 | `g711_alaw` | G.711 A-law audio codec. |
 
 ### RealtimeRealtimeVoice
+
 Specifies the voice for the text-to-speech output.
 
-| Value | Description |
-|---|---|
-| `alloy` | Alloy voice. |
+| Value     | Description    |
+| --------- | -------------- |
+| `alloy`   | Alloy voice.   |
 | `shimmer` | Shimmer voice. |
-| `echo` | Echo voice. |
+| `echo`    | Echo voice.    |
 
 ### RealtimeRealtimeAudioInputTranscriptionModel
+
 Specifies the model for audio input transcription.
 
-| Value | Description |
-|---|---|
+| Value       | Description                                 |
+| ----------- | ------------------------------------------- |
 | `whisper-1` | OpenAI Whisper v1 model for speech-to-text. |
 
 ### RealtimeRealtimeContentPartType
+
 Specifies the type of content part.
 
-| Value | Description |
-|---|---|
-| `input_text` | Text content provided as input. |
+| Value         | Description                      |
+| ------------- | -------------------------------- |
+| `input_text`  | Text content provided as input.  |
 | `input_audio` | Audio content provided as input. |
-| `text` | Text content in response. |
-| `audio` | Audio content in response. |
+| `text`        | Text content in response.        |
+| `audio`       | Audio content in response.       |
 
 ### RealtimeRealtimeToolChoiceLiteral
+
 String literal options for tool choice.
 
-| Value | Description |
-|---|---|
-| `auto` | Automatically choose whether to use tools. |
-| `none` | Do not use any tools. |
-| `required` | Require the use of tools. |
+| Value      | Description                                |
+| ---------- | ------------------------------------------ |
+| `auto`     | Automatically choose whether to use tools. |
+| `none`     | Do not use any tools.                      |
+| `required` | Require the use of tools.                  |
 
 ### RealtimeRealtimeTurnDetectionType
+
 Specifies the type of turn detection.
 
-| Value | Description |
-|---|---|
+| Value        | Description                           |
+| ------------ | ------------------------------------- |
 | `server_vad` | Server-side voice activity detection. |
 
 ### Other Type Aliases
 
-| Type | Description | Possible Values |
-|---|---|---|
-| `RealtimeRealtimeItemStatus` | The status of a conversation item. | `in_progress`, `completed`, `incomplete` |
-| `RealtimeRealtimeItemType` | The type of a conversation item. | `message`, `function_call`, `function_call_output` |
-| `RealtimeRealtimeMessageRole` | The role of the author of a message. | `system`, `user`, `assistant` |
+| Type                             | Description                             | Possible Values                                                 |
+| -------------------------------- | --------------------------------------- | --------------------------------------------------------------- |
+| `RealtimeRealtimeItemStatus`     | The status of a conversation item.      | `in_progress`, `completed`, `incomplete`                        |
+| `RealtimeRealtimeItemType`       | The type of a conversation item.        | `message`, `function_call`, `function_call_output`              |
+| `RealtimeRealtimeMessageRole`    | The role of the author of a message.    | `system`, `user`, `assistant`                                   |
 | `RealtimeRealtimeResponseStatus` | The final status of a model's response. | `in_progress`, `completed`, `cancelled`, `incomplete`, `failed` |
-| `RealtimeRealtimeToolType` | The type of a tool. | `function` |
-| `RealtimeRealtimeRequestModel` | The model to use for requests. | `gpt-4o-realtime` |
+| `RealtimeRealtimeToolType`       | The type of a tool.                     | `function`                                                      |
+| `RealtimeRealtimeRequestModel`   | The model to use for requests.          | `gpt-4o-realtime`                                               |
 
 ---
 
 ## Configuration Interfaces
 
 ### AzureRealTimeAudioOptions
+
 The main configuration interface for initializing the Azure Real-time Audio SDK client.
 
 ```typescript
@@ -140,6 +155,7 @@ interface AzureRealTimeAudioOptions {
 ```
 
 #### Fields
+
 - **`hostName`**: `string` - Azure OpenAI service hostname (e.g., 'your-resource.openai.azure.com')
 - **`apiVersion`**: `string` - API version string (e.g., '2024-10-01-preview')
 - **`deployment`**: `string` - Model deployment name configured in Azure OpenAI
@@ -147,6 +163,7 @@ interface AzureRealTimeAudioOptions {
 - **`sessionConfig?`**: `SessionConfig` - Optional session configuration to override defaults. See [Session Configuration](#session-configuration) for details.
 
 ### WebSocketClientOptions
+
 Configuration options for the underlying WebSocket client connection.
 
 ```typescript
@@ -164,6 +181,7 @@ interface WebSocketClientOptions {
 ```
 
 #### Fields
+
 - **`reconnectInterval?`**: `number` - Time interval in milliseconds between reconnection attempts
 - **`heartbeatInterval?`**: `number` - Time interval in milliseconds between heartbeat messages
 - **`heartbeatMessage?`**: `any` - Custom message to send as heartbeat
@@ -179,26 +197,30 @@ interface WebSocketClientOptions {
 ## Data Structures
 
 ### Session Configuration
+
 The `sessionConfig` object passed to the constructor.
 
 ```typescript
 interface SessionConfig {
   model?: RealtimeRealtimeRequestModel; // 'gpt-4o-realtime'
-  modalities?: ('text' | 'audio')[];
+  modalities?: ("text" | "audio")[];
   voice?: RealtimeRealtimeVoice;
   instructions?: string;
   input_audio_format?: RealtimeRealtimeAudioFormat;
   output_audio_format?: RealtimeRealtimeAudioFormat;
   input_audio_transcription?: RealtimeRealtimeAudioInputTranscriptionSettings;
-  turn_detection?: RealtimeRealtimeTurnDetection | RealtimeRealtimeServerVadTurnDetection;
+  turn_detection?:
+    | RealtimeRealtimeTurnDetection
+    | RealtimeRealtimeServerVadTurnDetection;
   tools?: RealtimeRealtimeTool[];
   tool_choice?: RealtimeRealtimeToolChoice;
   temperature?: number;
-  max_response_output_tokens?: number | 'inf';
+  max_response_output_tokens?: number | "inf";
 }
 ```
 
 #### Fields
+
 - **`model?`**: `RealtimeRealtimeRequestModel` - The model to use for realtime conversation (default: 'gpt-4o-realtime')
 - **`modalities?`**: `('text' | 'audio')[]` - List of modalities the model should support (default: ['text', 'audio'])
 - **`voice?`**: `RealtimeRealtimeVoice` - Voice to use for audio generation ('alloy' | 'shimmer' | 'echo', default: 'alloy')
@@ -213,6 +235,7 @@ interface SessionConfig {
 - **`max_response_output_tokens?`**: `number | 'inf'` - Maximum number of tokens for model response
 
 ### Audio Input Transcription Settings
+
 Settings for transcribing input audio to text.
 
 ```typescript
@@ -222,9 +245,31 @@ interface RealtimeRealtimeAudioInputTranscriptionSettings {
 ```
 
 #### Fields
+
 - **`model?`**: `RealtimeRealtimeAudioInputTranscriptionModel` - Model to use for transcribing input audio (default: 'whisper-1')
 
+### Turn Detection
+
+Configuration for voice activity detection (VAD) and automatic turn-taking behavior.
+
+```typescript
+interface RealtimeRealtimeServerVadTurnDetection {
+  type: "server_vad";
+  threshold?: number;
+  prefix_padding_ms?: number;
+  silence_duration_ms?: number;
+}
+```
+
+#### Fields
+
+- **`type`**: `'server_vad'` - Type of turn detection. Can also be set to `null` on `sessionConfig` to disable server VAD and use manual push-to-talk mode.
+- **`threshold?`**: `number` - Sensitivity threshold for voice detection (0.0 to 1.0). Default in `DEFAULT_SESSION_CONFIG` is `0.4`.
+- **`prefix_padding_ms?`**: `number` - Audio in milliseconds prepended before speech onset to prevent cutting off early syllables (default: 300ms).
+- **`silence_duration_ms?`**: `number` - Duration of silence in milliseconds required before considering speech ended (default: 600ms).
+
 ### Response Configuration
+
 The `responseConfig` object for the `createResponse` method.
 
 ```typescript
@@ -234,10 +279,10 @@ interface ResponseConfig {
   append_input_items?: RealtimeRealtimeRequestItem[];
   input_items?: RealtimeRealtimeRequestItem[];
   instructions?: string;
-  modalities?: ('text' | 'audio')[];
+  modalities?: ("text" | "audio")[];
   voice?: RealtimeRealtimeVoice;
   temperature?: number;
-  max_output_tokens?: number | 'inf' | null;
+  max_output_tokens?: number | "inf" | null;
   tools?: RealtimeRealtimeTool[];
   tool_choice?: RealtimeRealtimeToolChoice;
   output_audio_format?: RealtimeRealtimeAudioFormat;
@@ -245,6 +290,7 @@ interface ResponseConfig {
 ```
 
 #### Fields
+
 - **`commit`**: `boolean` - Whether to commit the generated messages to the conversation
 - **`cancel_previous`**: `boolean` - Whether to cancel any previous response generation in progress
 - **`append_input_items?`**: `RealtimeRealtimeRequestItem[]` - Items to append to the conversation before generating response
@@ -259,31 +305,34 @@ interface ResponseConfig {
 - **`output_audio_format?`**: `RealtimeRealtimeAudioFormat` - Audio format for this response
 
 ### Conversation Items
+
 Used in `createConversationItem` and `append_input_items`.
 
 #### Message Item
+
 ```typescript
 interface MessageItem {
-  type: 'message';
+  type: "message";
   role: RealtimeRealtimeMessageRole; // 'system', 'user', or 'assistant'
   content: (TextContentPart | AudioContentPart)[];
 }
 
 interface TextContentPart {
-  type: 'input_text';
+  type: "input_text";
   text: string;
 }
 
 interface AudioContentPart {
-  type: 'input_audio';
+  type: "input_audio";
   transcript?: string;
 }
 ```
 
 #### Function Call Item
+
 ```typescript
 interface FunctionCallItem {
-  type: 'function_call';
+  type: "function_call";
   call_id: string;
   name: string;
   arguments: string;
@@ -291,9 +340,10 @@ interface FunctionCallItem {
 ```
 
 #### Function Call Output Item
+
 ```typescript
 interface FunctionCallOutputItem {
-  type: 'function_call_output';
+  type: "function_call_output";
   call_id: string;
   output: string;
 }
@@ -302,9 +352,10 @@ interface FunctionCallOutputItem {
 ### Tools and Tool Choice
 
 #### Function Tool
+
 ```typescript
 interface FunctionTool {
-  type: 'function';
+  type: "function";
   name: string;
   description?: string;
   parameters?: object; // JSON Schema object
@@ -312,12 +363,13 @@ interface FunctionTool {
 ```
 
 #### Tool Choice
+
 ```typescript
 // Can be a string literal or an object
-type ToolChoice = 'auto' | 'none' | 'required' | ToolChoiceObject;
+type ToolChoice = "auto" | "none" | "required" | ToolChoiceObject;
 
 interface ToolChoiceObject {
-  type: 'function';
+  type: "function";
   function: {
     name: string;
   };
@@ -333,32 +385,38 @@ This section details the data structure received by the listener for each event.
 ### Session Events
 
 #### `init` / `session.updated`
+
 - **Payload**: `RealtimeRealtimeResponseSessionUpdatedCommand`
 - **Description**: Fired when the session is first initialized and ready, or when its configuration is updated.
 - **Structure**:
+
 ```typescript
 {
-  type: 'session.updated';
+  type: "session.updated";
   event_id: string | null;
   session: RealtimeRealtimeResponseSession;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'session.updated'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
   - **`session`**: `RealtimeRealtimeResponseSession` - Complete session configuration
 
 #### `session.created`
+
 - **Payload**: `RealtimeRealtimeResponseSessionCreatedCommand`
 - **Description**: Fired when a new session is successfully created on the server.
 - **Structure**:
+
 ```typescript
 {
-  type: 'session.created';
+  type: "session.created";
   event_id: string | null;
   session: RealtimeRealtimeResponseSession;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'session.created'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -367,32 +425,38 @@ This section details the data structure received by the listener for each event.
 ### Response Events
 
 #### `response.created`
+
 - **Payload**: `RealtimeRealtimeResponseCreatedCommand`
 - **Description**: Fired when the model begins processing a request to generate a response.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.created';
+  type: "response.created";
   event_id: string | null;
   response: RealtimeRealtimeResponse;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.created'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
   - **`response`**: `RealtimeRealtimeResponse` - Response object with metadata and usage information
 
 #### `response.done`
+
 - **Payload**: `RealtimeRealtimeResponseDoneCommand`
 - **Description**: Fired when the model has fully completed its response turn.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.done';
+  type: "response.done";
   event_id: string | null;
   response: RealtimeRealtimeResponse;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.done'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -401,12 +465,14 @@ This section details the data structure received by the listener for each event.
 ### Audio Events
 
 #### `response.audio.delta`
+
 - **Payload**: `RealtimeRealtimeResponseAudioDeltaCommand`
 - **Description**: Contains a chunk of the synthesized audio from the model.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.audio.delta';
+  type: "response.audio.delta";
   event_id: string | null;
   response_id: string;
   item_id: string;
@@ -415,6 +481,7 @@ This section details the data structure received by the listener for each event.
   delta: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.audio.delta'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -425,12 +492,14 @@ This section details the data structure received by the listener for each event.
   - **`delta`**: `string` - Base64-encoded audio data chunk
 
 #### `response.audio.done`
+
 - **Payload**: `RealtimeRealtimeResponseAudioDoneCommand`
 - **Description**: Signals the end of the audio stream for a content part.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.audio.done';
+  type: "response.audio.done";
   event_id: string | null;
   response_id: string;
   item_id: string;
@@ -438,6 +507,7 @@ This section details the data structure received by the listener for each event.
   content_index: number;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.audio.done'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -447,12 +517,14 @@ This section details the data structure received by the listener for each event.
   - **`content_index`**: `number` - Index of the content part within the item
 
 #### `response.audio_transcript.delta`
+
 - **Payload**: `RealtimeRealtimeResponseAudioTranscriptDeltaCommand`
 - **Description**: Contains a chunk of the live transcript of the model's speech.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.audio_transcript.delta';
+  type: "response.audio_transcript.delta";
   event_id: string | null;
   response_id: string;
   item_id: string;
@@ -461,6 +533,7 @@ This section details the data structure received by the listener for each event.
   delta: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.audio_transcript.delta'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -471,12 +544,14 @@ This section details the data structure received by the listener for each event.
   - **`delta`**: `string` - Partial transcript text
 
 #### `response.audio_transcript.done`
+
 - **Payload**: `RealtimeRealtimeResponseAudioTranscriptDoneCommand`
 - **Description**: Signals the final, complete transcript of the model's speech.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.audio_transcript.done';
+  type: "response.audio_transcript.done";
   event_id: string | null;
   response_id: string;
   item_id: string;
@@ -485,6 +560,7 @@ This section details the data structure received by the listener for each event.
   transcript: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.audio_transcript.done'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -497,12 +573,14 @@ This section details the data structure received by the listener for each event.
 ### Text Events
 
 #### `response.text.delta`
+
 - **Payload**: `RealtimeRealtimeResponseTextDeltaCommand`
 - **Description**: Contains a chunk of the model's text response.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.text.delta';
+  type: "response.text.delta";
   event_id: string | null;
   response_id: string;
   item_id: string;
@@ -511,6 +589,7 @@ This section details the data structure received by the listener for each event.
   delta: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.text.delta'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -521,12 +600,14 @@ This section details the data structure received by the listener for each event.
   - **`delta`**: `string` - Partial text content
 
 #### `response.text.done`
+
 - **Payload**: `RealtimeRealtimeResponseTextDoneCommand`
 - **Description**: Signals the final, complete text response from the model.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.text.done';
+  type: "response.text.done";
   event_id: string | null;
   response_id: string;
   item_id: string;
@@ -535,6 +616,7 @@ This section details the data structure received by the listener for each event.
   value: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.text.done'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -547,12 +629,14 @@ This section details the data structure received by the listener for each event.
 ### Function Call Events
 
 #### `response.function_call_arguments.delta`
+
 - **Payload**: `RealtimeRealtimeResponseFunctionCallArgumentsDeltaCommand`
 - **Description**: Contains a chunk of the arguments for a tool function call.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.function_call_arguments.delta';
+  type: "response.function_call_arguments.delta";
   event_id: string | null;
   response_id: string;
   item_id: string;
@@ -561,6 +645,7 @@ This section details the data structure received by the listener for each event.
   delta: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.function_call_arguments.delta'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -571,12 +656,14 @@ This section details the data structure received by the listener for each event.
   - **`delta`**: `string` - Partial function arguments JSON
 
 #### `response.function_call_arguments.done`
+
 - **Payload**: `RealtimeRealtimeResponseFunctionCallArgumentsDoneCommand`
 - **Description**: Signals the complete arguments for a tool function call.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.function_call_arguments.done';
+  type: "response.function_call_arguments.done";
   event_id: string | null;
   response_id: string;
   item_id: string;
@@ -586,6 +673,7 @@ This section details the data structure received by the listener for each event.
   arguments: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.function_call_arguments.done'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -599,17 +687,20 @@ This section details the data structure received by the listener for each event.
 ### Input Audio Buffer Events
 
 #### `input_audio_buffer.speech_started`
+
 - **Payload**: `RealtimeRealtimeResponseInputAudioBufferSpeechStartedCommand`
 - **Description**: Fired when the server's VAD detects the start of user speech.
 - **Structure**:
+
 ```typescript
 {
-  type: 'input_audio_buffer.speech_started';
+  type: "input_audio_buffer.speech_started";
   event_id: string | null;
   audio_start_ms: number;
   item_id: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'input_audio_buffer.speech_started'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -617,17 +708,20 @@ This section details the data structure received by the listener for each event.
   - **`item_id`**: `string` - ID of the conversation item
 
 #### `input_audio_buffer.speech_stopped`
+
 - **Payload**: `RealtimeRealtimeResponseInputAudioBufferSpeechStoppedCommand`
 - **Description**: Fired when the server's VAD detects the end of user speech.
 - **Structure**:
+
 ```typescript
 {
-  type: 'input_audio_buffer.speech_stopped';
+  type: "input_audio_buffer.speech_stopped";
   event_id: string | null;
   audio_end_ms: number;
   item_id: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'input_audio_buffer.speech_stopped'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -635,9 +729,11 @@ This section details the data structure received by the listener for each event.
   - **`item_id`**: `string` - ID of the conversation item
 
 #### `input_audio_buffer.committed`
+
 - **Payload**: `RealtimeRealtimeResponseInputAudioBufferCommittedCommand`
 - **Description**: Fired when the audio buffer is committed.
 - **Structure**:
+
 ```typescript
 {
   type: 'input_audio_buffer.committed';
@@ -646,6 +742,7 @@ This section details the data structure received by the listener for each event.
   previous_item_id?: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'input_audio_buffer.committed'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -653,15 +750,18 @@ This section details the data structure received by the listener for each event.
   - **`previous_item_id?`**: `string` - ID of the previous conversation item (optional)
 
 #### `input_audio_buffer.cleared`
+
 - **Payload**: `RealtimeRealtimeResponseInputAudioBufferClearedCommand`
 - **Description**: Fired when the audio buffer is cleared.
 - **Structure**:
+
 ```typescript
 {
-  type: 'input_audio_buffer.cleared';
+  type: "input_audio_buffer.cleared";
   event_id: string | null;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'input_audio_buffer.cleared'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -669,50 +769,59 @@ This section details the data structure received by the listener for each event.
 ### Conversation Item Events
 
 #### `conversation.item.created`
+
 - **Payload**: `RealtimeRealtimeResponseItemCreatedCommand`
 - **Description**: Fired when a conversation item is created.
 - **Structure**:
+
 ```typescript
 {
-  type: 'conversation.item.created';
+  type: "conversation.item.created";
   event_id: string | null;
   item: RealtimeRealtimeResponseItem;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'conversation.item.created'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
   - **`item`**: `RealtimeRealtimeResponseItem` - The created conversation item
 
 #### `conversation.item.deleted`
+
 - **Payload**: `RealtimeRealtimeResponseItemDeletedCommand`
 - **Description**: Fired when a conversation item is deleted.
 - **Structure**:
+
 ```typescript
 {
-  type: 'conversation.item.deleted';
+  type: "conversation.item.deleted";
   event_id: string | null;
   item_id: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'conversation.item.deleted'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
   - **`item_id`**: `string` - ID of the deleted conversation item
 
 #### `conversation.item.truncated`
+
 - **Payload**: `RealtimeRealtimeResponseItemTruncatedCommand`
 - **Description**: Fired when a conversation item is truncated.
 - **Structure**:
+
 ```typescript
 {
-  type: 'conversation.item.truncated';
+  type: "conversation.item.truncated";
   event_id: string | null;
   item_id: string;
   audio_end_ms: number;
   index: number;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'conversation.item.truncated'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -721,18 +830,21 @@ This section details the data structure received by the listener for each event.
   - **`index`**: `number` - Index where the truncation occurred
 
 #### `conversation.item.input_audio_transcription.completed`
+
 - **Payload**: `RealtimeRealtimeResponseItemInputAudioTranscriptionCompletedCommand`
 - **Description**: Fired when audio input transcription is completed.
 - **Structure**:
+
 ```typescript
 {
-  type: 'conversation.item.input_audio_transcription.completed';
+  type: "conversation.item.input_audio_transcription.completed";
   event_id: string | null;
   item_id: string;
   content_index: number;
   transcript: string;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'conversation.item.input_audio_transcription.completed'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -741,18 +853,21 @@ This section details the data structure received by the listener for each event.
   - **`transcript`**: `string` - The completed transcription text
 
 #### `conversation.item.input_audio_transcription.failed`
+
 - **Payload**: `RealtimeRealtimeResponseItemInputAudioTranscriptionFailedCommand`
 - **Description**: Fired when audio input transcription fails.
 - **Structure**:
+
 ```typescript
 {
-  type: 'conversation.item.input_audio_transcription.failed';
+  type: "conversation.item.input_audio_transcription.failed";
   event_id: string | null;
   item_id: string;
   content_index: number;
   error: RealtimeRealtimeResponseApiError;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'conversation.item.input_audio_transcription.failed'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -763,12 +878,14 @@ This section details the data structure received by the listener for each event.
 ### Content Part Events
 
 #### `response.content_part.added`
+
 - **Payload**: `RealtimeRealtimeResponseContentPartAddedCommand`
 - **Description**: Fired when a content part is added to the response.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.content_part.added';
+  type: "response.content_part.added";
   event_id: string | null;
   response_id: string;
   item_id: string;
@@ -777,6 +894,7 @@ This section details the data structure received by the listener for each event.
   part: RealtimeRealtimeContentPart;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.content_part.added'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -787,12 +905,14 @@ This section details the data structure received by the listener for each event.
   - **`part`**: `RealtimeRealtimeContentPart` - The content part that was added
 
 #### `response.content_part.done`
+
 - **Payload**: `RealtimeRealtimeResponseContentPartDoneCommand`
 - **Description**: Fired when a content part is completed.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.content_part.done';
+  type: "response.content_part.done";
   event_id: string | null;
   response_id: string;
   item_id: string;
@@ -801,6 +921,7 @@ This section details the data structure received by the listener for each event.
   part: RealtimeRealtimeContentPart;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.content_part.done'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -813,18 +934,21 @@ This section details the data structure received by the listener for each event.
 ### Output Item Events
 
 #### `response.output_item.added`
+
 - **Payload**: `RealtimeRealtimeResponseOutputItemAddedCommand`
 - **Description**: Fired when an output item is added to the response.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.output_item.added';
+  type: "response.output_item.added";
   event_id: string | null;
   response_id: string;
   output_index: number;
   item: RealtimeRealtimeResponseItem;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.output_item.added'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -833,18 +957,21 @@ This section details the data structure received by the listener for each event.
   - **`item`**: `RealtimeRealtimeResponseItem` - The output item that was added
 
 #### `response.output_item.done`
+
 - **Payload**: `RealtimeRealtimeResponseOutputItemDoneCommand`
 - **Description**: Fired when an output item is completed.
 - **Structure**:
+
 ```typescript
 {
-  type: 'response.output_item.done';
+  type: "response.output_item.done";
   event_id: string | null;
   response_id: string;
   output_index: number;
   item: RealtimeRealtimeResponseItem;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'response.output_item.done'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -855,9 +982,11 @@ This section details the data structure received by the listener for each event.
 ### Rate Limits Events
 
 #### `rate_limits.updated`
+
 - **Payload**: `RealtimeRealtimeResponseRateLimitsUpdatedCommand`
 - **Description**: Fired when rate limit information is updated.
 - **Structure**:
+
 ```typescript
 {
   type: 'rate_limits.updated';
@@ -865,6 +994,7 @@ This section details the data structure received by the listener for each event.
   rate_limits: RealtimeRealtimeResponseRateLimitDetailsItem[];
 }
 ```
+
 - **Fields**:
   - **`type`**: `'rate_limits.updated'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -873,16 +1003,19 @@ This section details the data structure received by the listener for each event.
 ### Error Events
 
 #### `error`
+
 - **Payload**: `RealtimeRealtimeResponseErrorCommand`
 - **Description**: Fired when an error occurs.
 - **Structure**:
+
 ```typescript
 {
-  type: 'error';
+  type: "error";
   event_id: string | null;
   error: RealtimeRealtimeResponseError;
 }
 ```
+
 - **Fields**:
   - **`type`**: `'error'` - Event type identifier
   - **`event_id`**: `string | null` - Unique identifier for this event
@@ -893,14 +1026,15 @@ This section details the data structure received by the listener for each event.
 ## Additional Data Structures
 
 ### RealtimeRealtimeResponseSession
+
 Complete session configuration returned in session events.
 
 ```typescript
 interface RealtimeRealtimeResponseSession {
-  object: 'realtime.session';
+  object: "realtime.session";
   id: string;
   model: string;
-  modalities: ('text' | 'audio')[];
+  modalities: ("text" | "audio")[];
   instructions: string;
   voice: RealtimeRealtimeVoice;
   input_audio_format: RealtimeRealtimeAudioFormat;
@@ -915,6 +1049,7 @@ interface RealtimeRealtimeResponseSession {
 ```
 
 #### Fields
+
 - **`object`**: `'realtime.session'` - Object type identifier
 - **`id`**: `string` - Unique session identifier
 - **`model`**: `string` - Model being used for the session
@@ -931,11 +1066,12 @@ interface RealtimeRealtimeResponseSession {
 - **`max_response_output_tokens`**: `number | null` - Maximum output tokens
 
 ### RealtimeRealtimeResponse
+
 Complete response object containing metadata and usage information.
 
 ```typescript
 interface RealtimeRealtimeResponse {
-  object: 'realtime.response';
+  object: "realtime.response";
   id: string;
   status: RealtimeRealtimeResponseStatus;
   status_details: RealtimeRealtimeResponseStatusDetails | null;
@@ -958,6 +1094,7 @@ interface RealtimeRealtimeResponse {
 ```
 
 #### Fields
+
 - **`object`**: `'realtime.response'` - Object type identifier
 - **`id`**: `string` - Unique response identifier
 - **`status`**: `RealtimeRealtimeResponseStatus` - Response status ('in_progress' | 'completed' | 'cancelled' | 'incomplete' | 'failed')
@@ -976,6 +1113,7 @@ interface RealtimeRealtimeResponse {
     - **`audio_tokens`**: `number` - Audio output tokens
 
 ### RealtimeRealtimeResponseError
+
 Error information object.
 
 ```typescript
@@ -989,6 +1127,7 @@ interface RealtimeRealtimeResponseError {
 ```
 
 #### Fields
+
 - **`type`**: `string` - Error type identifier
 - **`code?`**: `string` - Optional error code
 - **`message`**: `string` - Human-readable error message
@@ -996,6 +1135,7 @@ interface RealtimeRealtimeResponseError {
 - **`event_id?`**: `string` - Event ID where the error occurred (if applicable)
 
 ### RealtimeRealtimeResponseApiError
+
 API-specific error information.
 
 ```typescript
@@ -1008,28 +1148,32 @@ interface RealtimeRealtimeResponseApiError {
 ```
 
 #### Fields
+
 - **`type`**: `string` - Error type identifier
 - **`code?`**: `string` - Optional API error code
 - **`message`**: `string` - Human-readable error message
 - **`param?`**: `string` - Parameter that caused the error (if applicable)
 
 ### RealtimeRealtimeResponseItem
+
 Base response item structure.
 
 ```typescript
 interface RealtimeRealtimeResponseItem {
-  object: 'realtime.item';
+  object: "realtime.item";
   type: RealtimeRealtimeItemType;
   id: string | null;
 }
 ```
 
 #### Fields
+
 - **`object`**: `'realtime.item'` - Object type identifier
 - **`type`**: `RealtimeRealtimeItemType` - Item type ('message' | 'function_call' | 'function_call_output')
 - **`id`**: `string | null` - Unique item identifier
 
 ### RealtimeRealtimeResponseRateLimitDetailsItem
+
 Rate limit information for a specific resource.
 
 ```typescript
@@ -1042,12 +1186,14 @@ interface RealtimeRealtimeResponseRateLimitDetailsItem {
 ```
 
 #### Fields
+
 - **`name`**: `string` - Name of the rate-limited resource
 - **`limit`**: `number` - Maximum allowed requests/tokens
 - **`remaining`**: `number` - Remaining requests/tokens in current window
 - **`reset_seconds`**: `number` - Seconds until the rate limit resets
 
 ### RealtimeRealtimeContentPart
+
 Base content part structure.
 
 ```typescript
@@ -1057,4 +1203,5 @@ interface RealtimeRealtimeContentPart {
 ```
 
 #### Fields
+
 - **`type`**: `RealtimeRealtimeContentPartType` - Content type ('input_text' | 'input_audio' | 'text' | 'audio')

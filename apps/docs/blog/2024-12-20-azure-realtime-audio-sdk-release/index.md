@@ -45,35 +45,35 @@ tags: [azure, openai, realtime, audio, sdk, typescript, javascript]
 安装 SDK 非常简单：
 
 ```bash
-npm install @azure-realtime-audio/core
+npm install azure-realtime-audio-sdk
 ```
 
 创建你的第一个语音助手：
 
 ```typescript
-import { AzureRealTimeAudio } from '@azure-realtime-audio/core';
+import { AzureRealTimeAudio } from "azure-realtime-audio-sdk";
 
 // 创建客户端实例
 const client = new AzureRealTimeAudio({
-  hostName: 'your-resource.openai.azure.com',
-  apiVersion: '2024-10-01-preview',
-  deployment: 'gpt-4o-realtime-preview',
-  apiKey: 'your-api-key',
+  hostName: "your-resource.openai.azure.com",
+  apiVersion: "2024-10-01-preview",
+  deployment: "gpt-4o-realtime-preview",
+  apiKey: "your-api-key",
   sessionConfig: {
-    voice: 'alloy',
-    instructions: '你是一个友好的AI助手，请用中文回答问题。',
-    input_audio_format: 'pcm16',
-    output_audio_format: 'pcm16'
-  }
+    voice: "alloy",
+    instructions: "你是一个友好的AI助手，请用中文回答问题。",
+    input_audio_format: "pcm16",
+    output_audio_format: "pcm16",
+  },
 });
 
 // 监听初始化完成
-client.once('init', (session) => {
-  console.log('🎉 语音助手已就绪！');
+client.once("init", (session) => {
+  console.log("🎉 语音助手已就绪！");
 });
 
 // 监听AI回答的音频
-client.on('response.audio.delta', (audioData) => {
+client.on("response.audio.delta", (audioData) => {
   // 播放音频数据
   playAudio(audioData.delta);
 });

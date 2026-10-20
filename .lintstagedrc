@@ -1,3 +1,7 @@
 {
-  "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx}": "pnpm lint:fix"
+  "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx}": [
+    "oxlint --fix",
+    "prettier --write"
+  ],
+  "**/*.md": "prettier --write"
 }
