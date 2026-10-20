@@ -162,7 +162,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Azure Realtime Audio SDK. `,
+      copyright: `Copyright © ${new Date().getFullYear()} <a href="https://github.com/JsonLee12138" target="_blank" rel="noopener noreferrer">Json Lee</a>.`,
     },
 
     // Algolia DocSearch 占位配置

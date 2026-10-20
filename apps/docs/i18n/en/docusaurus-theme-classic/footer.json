@@ -36,7 +36,7 @@
     "description": "The label of footer link with label=GitHub linking to https://github.com/JsonLee12138/azure-realtime-audio-sdk"
   },
   "copyright": {
-    "message": "Copyright © 2025 Azure Realtime Audio SDK. ",
+    "message": "Copyright © 2025 <a href=\"https://github.com/JsonLee12138\" target=\"_blank\" rel=\"noopener noreferrer\">Json Lee</a>.",
     "description": "The footer copyright"
   }
 }

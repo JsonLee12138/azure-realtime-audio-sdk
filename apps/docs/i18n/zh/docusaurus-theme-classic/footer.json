@@ -36,7 +36,7 @@
     "description": "页脚链接标签：GitHub，链接到 https://github.com/JsonLee12138/azure-realtime-audio-sdk"
   },
   "copyright": {
-    "message": "版权所有 © 2025 Azure Realtime Audio SDK。",
+    "message": "版权所有 © 2025 <a href=\"https://github.com/JsonLee12138\" target=\"_blank\" rel=\"noopener noreferrer\">Json Lee</a>。",
     "description": "页脚版权信息"
   }
 } 
